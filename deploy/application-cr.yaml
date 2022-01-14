@@ -21,7 +21,7 @@ spec:
         kind: ClusterIssuer
         name: self-signed
     port: 9443
-    type: ClusterIP
+    type: NodePort
   route:
     certificate:
       isCA: true
