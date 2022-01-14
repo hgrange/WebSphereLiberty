@@ -18,7 +18,7 @@ RUN mvn --version
 RUN mkdir -p /config/apps && \
     mkdir -p /sharedlibs && \
     cp ./src/main/liberty/config/server.xml /config && \
-    cp ./target/*.*ar /config/dropins/ && \
+    cp ./target/*.*ar /config/apps/ && \
     if [ ! -z "$(ls ./src/main/liberty/lib)" ]; then \
         cp ./src/main/liberty/lib/* /sharedlibs; \
     fi
