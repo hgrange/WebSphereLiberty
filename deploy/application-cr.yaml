@@ -16,7 +16,7 @@ spec:
       value: "true"
   service:
     certificate:
-      isCA: true
+      isCA: false
       issuerRef:
         kind: ClusterIssuer
         name: self-signed
@@ -28,7 +28,7 @@ spec:
     mountPath: "/logs"
   route:
     certificate:
-      isCA: true
+      isCA: false
       issuerRef:
         kind: ClusterIssuer
         name: self-signed
