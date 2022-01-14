@@ -22,6 +22,7 @@ spec:
         name: self-signed
     port: 9443
     type: NodePort
+    nodePort: 30391
   storage:
     size: 2Gi
     mountPath: "/logs"
