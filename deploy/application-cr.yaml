@@ -5,6 +5,7 @@ kind: OpenLibertyApplication
 metadata:
   name: modresorts
 spec:
+  serviceAccountName: ta-operator
   replicas: 1
   applicationImage: IMAGE_REFERENCE
   expose: true
