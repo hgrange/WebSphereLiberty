@@ -36,7 +36,6 @@ COPY --chown=1001:0 --from=build-stage /sharedlibs/ /opt/ol/wlp/usr/shared/confi
 # Only available in 'kernel-slim'. The 'full' tag already includes all features for convenience.
 
 RUN features.sh
-RUN sleep 9999999
 # Add interim fixes (optional)
 # COPY --chown=1001:0  interim-fixes /opt/ol/fixes/
 
@@ -51,3 +50,4 @@ RUN \
      && java -jar /tmp/license.jar -acceptLicense /opt/ibm \
      && rm /tmp/license.jar; \
    fi
+RUN sleep 9999999
