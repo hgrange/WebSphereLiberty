@@ -22,6 +22,9 @@ spec:
         name: self-signed
     port: 9443
     type: NodePort
+  storage:
+    size: 2Gi
+    mountPath: "/logs"
   route:
     certificate:
       isCA: true
