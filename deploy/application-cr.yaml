@@ -33,3 +33,4 @@ spec:
         kind: ClusterIssuer
         name: self-signed
     termination: reencrypt
+    insecureEdgeTerminationPolicy: Redirect
