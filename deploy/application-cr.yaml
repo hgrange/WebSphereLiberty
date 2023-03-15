@@ -10,7 +10,6 @@ spec:
     accept: true
     edition: IBM WebSphere Application Server
     productEntitlementSource: Standalone
-  applicationName: modresorts
   manageTLS: true
   serviceAccountName: ta-operator
   replicas: 1
