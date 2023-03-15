@@ -4,7 +4,12 @@ apiVersion: liberty.websphere.ibm.com/v1
 kind: WebSphereLibertyApplication
 metadata:
   name: modresorts
+  namespace: ta
 spec:
+  license:
+    accept: true
+    edition: IBM WebSphere Application Server
+    productEntitlementSource: Standalone
   serviceAccountName: ta-operator
   replicas: 1
   applicationImage: IMAGE_REFERENCE
