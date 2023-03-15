@@ -17,4 +17,3 @@ spec:
   expose: true
   service:
     port: 9443
-    type: NodePort
