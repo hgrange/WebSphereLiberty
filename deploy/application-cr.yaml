@@ -10,32 +10,12 @@ spec:
     accept: true
     edition: IBM WebSphere Application Server
     productEntitlementSource: Standalone
+  applicationName: modresorts
+  manageTLS: true
   serviceAccountName: ta-operator
   replicas: 1
   applicationImage: IMAGE_REFERENCE
   expose: true
-  env:
-    - name: SEC_TLS_TRUSTDEFAULTCERTS
-      value: "true"
-    - name: SEC_IMPORT_K8S_CERTS
-      value: "true"
   service:
-    certificate:
-      isCA: false
-      issuerRef:
-        kind: ClusterIssuer
-        name: self-signed
     port: 9443
     type: NodePort
-    nodePort: 30391
-  storage:
-    size: 2Gi
-    mountPath: "/logs"
-  route:
-    certificate:
-      isCA: false
-      issuerRef:
-        kind: ClusterIssuer
-        name: self-signed
-    termination: passthrough
-    insecureEdgeTerminationPolicy: Redirect
