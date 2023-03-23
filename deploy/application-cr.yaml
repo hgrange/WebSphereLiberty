@@ -4,7 +4,7 @@ apiVersion: liberty.websphere.ibm.com/v1
 kind: WebSphereLibertyApplication
 metadata:
   name: modresorts
-  namespace: ta
+  namespace: default
 spec:
   license:
     accept: true
