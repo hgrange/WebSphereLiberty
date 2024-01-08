@@ -6,6 +6,10 @@ metadata:
   labels:
     app: modresorts
 spec:
+  selector:
+    matchLabels:
+      app: modresorts
+      serviceAccount: ta-operator
   template:
     metadata:
       annotations:
@@ -13,11 +17,6 @@ spec:
         productName: "IBM WebSphere Application Server Liberty Core"
         productMetric: "PROCESSOR_VALUE_UNIT"
         productChargedContainers: "All"
-    spec:
-      selector:
-        matchLabels:
-          app: modresorts
-      serviceAccount: ta-operator
       volumes:
       - name: tmpfs-1
         emptyDir: {}
