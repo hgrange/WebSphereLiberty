@@ -43,7 +43,7 @@ RUN features.sh
 RUN configure.sh
 
 # Upgrade to production license if URL to JAR provided
-ARG LICENSE_JAR_URL
+ARG LICENSE_JAR_URL wlp-core-license.jar
 RUN \
    if [ $LICENSE_JAR_URL ]; then \
      wget $LICENSE_JAR_URL -O /tmp/license.jar \
