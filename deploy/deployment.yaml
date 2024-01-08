@@ -6,12 +6,15 @@ metadata:
   labels:
     app: modresorts
 spec:
+  replicas: 1
   selector:
     matchLabels:
       app: modresorts
       serviceAccount: ta-operator
   template:
     metadata:
+      labels:
+        app: modresorts
       annotations:
         productID: "87f3487c22f34742a799164f3f3ffa78"
         productName: "IBM WebSphere Application Server Liberty Core"
