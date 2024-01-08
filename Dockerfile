@@ -23,7 +23,7 @@ RUN mkdir -p /config/apps && \
         cp ./src/main/liberty/lib/* /sharedlibs; \
     fi
 
-FROM FROM icr.io/appcafe/websphere-liberty:kernel-java8-ibmjava-ubi
+FROM icr.io/appcafe/websphere-liberty:kernel-java8-ibmjava-ubi
 
 ARG TLS=true
 
