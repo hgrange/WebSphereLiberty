@@ -16,8 +16,19 @@ spec:
     productEntitlementSource: Standalone
   manageTLS: true
   serviceAccountName: ta-operator
-  replicas: 1
+  replicas: 2
   applicationImage: IMAGE_REFERENCE
+  securityContext:
+    capabilities:
+      drop:
+        - ALL
+    privileged: false
+    runAsNonRoot: true
+    readOnlyRootFilesystem: true
+    allowPrivilegeEscalation: false  
+  storage:
+    size: 2Gi
+    mountPath: "/logs"
   expose: true
   service:
     port: 9443
