@@ -8,7 +8,7 @@ metadata:
     productMetric: PROCESSOR_VALUE_UNIT
     productName: IBM WebSphere Application Server Liberty Core
   name: modresorts
-  namespace: default
+  namespace: NAMESPACE
 spec:
   license:
     accept: true
