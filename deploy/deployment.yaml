@@ -20,18 +20,6 @@ spec:
         productMetric: "PROCESSOR_VALUE_UNIT"
         productChargedContainers: "All"
     spec:
-      serviceAccount: ta-operator  
-      volumes:
-      - name: tmpfs-1
-        emptyDir: {}
-      - name: tmpfs-2
-        emptyDir: {}
-      - name: tmpfs-3
-        emptyDir: {}
-      - name: tmpfs-4
-        emptyDir: {}
-      - name: tmpfs-5
-        emptyDir: {}
       containers:
       - name: websphere
         securityContext:
@@ -67,3 +55,16 @@ spec:
           periodSeconds: 10
           timeoutSeconds: 3
           failureThreshold: 1
+      serviceAccount: ta-operator  
+      volumes:
+      - name: tmpfs-1
+        emptyDir: {}
+      - name: tmpfs-2
+        emptyDir: {}
+      - name: tmpfs-3
+        emptyDir: {}
+      - name: tmpfs-4
+        emptyDir: {}
+      - name: tmpfs-5
+        emptyDir: {}
+      
