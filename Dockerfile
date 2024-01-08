@@ -42,11 +42,8 @@ RUN features.sh
 # This script will add the requested server configurations, apply any interim fixes and populate caches to optimize runtime
 RUN configure.sh
 
-# Upgrade to production license if URL to JAR provided
-ARG LICENSE_JAR_URL wlp-core-license.jar
-RUN \
-   if [ $LICENSE_JAR_URL ]; then \
-     wget $LICENSE_JAR_URL -O /tmp/license.jar \
-     && java -jar /tmp/license.jar -acceptLicense /opt/ibm \
-     && rm /tmp/license.jar; \
-   fi
+# Upgrade to production license 
+COPY wlp-core-license.jar /tmp/wlp-core-license.jar
+RUN java -jar /tmp/wlp-core-license.jar --acceptLicense /opt/ibm/wlp \
+    && rm /tmp/wlp-core-license.jar
+
