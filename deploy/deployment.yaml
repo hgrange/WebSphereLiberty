@@ -19,6 +19,7 @@ spec:
         productName: "IBM WebSphere Application Server Liberty Core"
         productMetric: "PROCESSOR_VALUE_UNIT"
         productChargedContainers: "All"
+    spec:
       serviceAccount: ta-operator  
       volumes:
       - name: tmpfs-1
