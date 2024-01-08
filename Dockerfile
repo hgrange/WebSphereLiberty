@@ -23,12 +23,12 @@ RUN mkdir -p /config/apps && \
         cp ./src/main/liberty/lib/* /sharedlibs; \
     fi
 
-FROM icr.io/appcafe/open-liberty:kernel-slim-java8-openj9-ubi
+FROM FROM icr.io/appcafe/websphere-liberty:kernel-java8-ibmjava-ubi
 
 ARG TLS=true
 
 
-RUN mkdir -p /opt/ol/wlp/usr/shared/config/lib/global
+RUN mkdir -p /opt/ibm/wlp/usr/shared/config/lib/global
 COPY --chown=1001:0 --from=build-stage /config/ /config/
 COPY --chown=1001:0 --from=build-stage /sharedlibs/ /opt/ol/wlp/usr/shared/config/lib/global
 
@@ -37,7 +37,7 @@ COPY --chown=1001:0 --from=build-stage /sharedlibs/ /opt/ol/wlp/usr/shared/confi
 
 RUN features.sh
 # Add interim fixes (optional)
-# COPY --chown=1001:0  interim-fixes /opt/ol/fixes/
+# COPY --chown=1001:0  interim-fixes /opt/ibm/wlp/fixes/
 
 # This script will add the requested server configurations, apply any interim fixes and populate caches to optimize runtime
 RUN configure.sh
