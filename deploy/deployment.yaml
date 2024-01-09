@@ -36,16 +36,22 @@ spec:
         ports:
         - containerPort: 9443
         volumeMounts:
-          - mountPath: /opt/ibm/wlp/output/defaultServer
-            name: tmpfs-1
           - mountPath: /opt/ibm/wlp/usr/servers/defaultServer/workaera
-            name: tmpfs-2
+            name: tmpfs-1
           - mountPath: /opt/ibm/wlp/usr/servers/defaultServer/configDropins/defaults
-            name: tmpfs-3
+            name: tmpfs-2
           - mountPath: /logs
-            name: tmpfs-4
+            name: tmpfs-3
           - mountPath: /opt/ibm/wlp/usr/servers/defaultServer/apps/expanded
+            name: tmpfs-4
+          - mountPath: /opt/ibm/wlp/usr/servers/defaultServer/configDropins/defaults
             name: tmpfs-5
+          - mountPath: /opt/ibm/wlp/output/defaultServer/logs
+            name: tmpfs-6
+          - mountPath: /opt/ibm/wlp/output/defaultServer/resources
+            name: tmpfs-7
+          - mountPath: /opt/ibm/wlp/output/defaultServer/workarea
+            name: tmpfs-8
         workingDir: /logs
         readinessProbe:
           httpGet:
@@ -55,8 +61,6 @@ spec:
           periodSeconds: 10
           timeoutSeconds: 3
           failureThreshold: 1
-        command: "/opt/ibm/helpers/runtime/docker-server.sh"
-        args: ["mv /home/default/.classCache /output/; /opt/ibm/wlp/bin/server run defaultServer"]
       serviceAccount: ta-operator  
       volumes:
       - name: tmpfs-1
@@ -71,4 +75,7 @@ spec:
         emptyDir: {}
       - name: tmpfs-6
         emptyDir: {}
-      
+      - name: tmpfs-5
+        emptyDir: {}
+      - name: tmpfs-6
+        emptyDir: {}      
