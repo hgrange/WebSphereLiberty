@@ -55,6 +55,8 @@ spec:
           periodSeconds: 10
           timeoutSeconds: 3
           failureThreshold: 1
+        command: "/opt/ibm/helpers/runtime/docker-server.sh"
+        args: "mv /home/default/.classCache /output/; /opt/ibm/wlp/bin/server run defaultServer"
       serviceAccount: ta-operator  
       volumes:
       - name: tmpfs-1
