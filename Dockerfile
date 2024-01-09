@@ -46,7 +46,7 @@ RUN features.sh
 # COPY --chown=1001:0  interim-fixes /opt/ibm/wlp/fixes/
 
 # This script will add the requested server configurations, apply any interim fixes and populate caches to optimize runtime
-
+ENV VERBOSE=true
 RUN  mkdir /home/default/.classCache && configure.sh 
 Run echo apres : && echo /output/.classCache && ls -la /output/.classCache 
 Run echo apres : && echo /home/default/.classCache && ls -la /home/default/.classCache
