@@ -32,6 +32,7 @@ USER 0
 #RUN dnf install -y procps-ng && dnf clean all
 RUN dnf update -y && dnf install -y curl tar gzip jq  procps util-linux vim-minimal iputils 
 USER 1001
+ENV JAVA_TOOL_OPTIONS="-Xshareclasses:noPersistentDiskSpaceCheck" ${JAVA_TOOL_OPTIONS}" 
 
 RUN mkdir -p /opt/ibm/wlp/usr/shared/config/lib/global
 COPY --chown=1001:0 --from=build-stage /config/ /config/
