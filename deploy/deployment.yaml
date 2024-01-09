@@ -38,16 +38,14 @@ spec:
         volumeMounts:
           - mountPath: /opt/ibm/wlp/output/defaultServer
             name: tmpfs-1
-       #   - mountPath: /opt/ibm/wlp/output/defaultServer/.classCache
-       #     name: tmpfs-2
           - mountPath: /opt/ibm/wlp/usr/servers/defaultServer/workaera
-            name: tmpfs-3
+            name: tmpfs-2
           - mountPath: /opt/ibm/wlp/usr/servers/defaultServer/configDropins/defaults
-            name: tmpfs-4
+            name: tmpfs-3
           - mountPath: /logs
-            name: tmpfs-5
+            name: tmpfs-4
           - mountPath: /opt/ibm/wlp/usr/servers/defaultServer/apps/expanded
-            name: tmpfs-6
+            name: tmpfs-5
         workingDir: /logs
         readinessProbe:
           httpGet:
