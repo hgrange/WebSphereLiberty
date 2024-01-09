@@ -36,9 +36,9 @@ spec:
         ports:
         - containerPort: 9443
         volumeMounts:
-          - mountPath: /output
+          - mountPath: /opt/ibm/wlp/output/defaultServer
             name: tmpfs-1
-          - mountPath: /output/.classCache
+          - mountPath: /opt/ibm/wlp/output/defaultServer/.classCache
             name: tmpfs-2
           - mountPath: /opt/ibm/wlp/usr/servers/defaultServer/workaera
             name: tmpfs-3
@@ -51,7 +51,7 @@ spec:
         workingDir: /logs
         readinessProbe:
           httpGet:
-            path: /health/ready
+            path: /
             port: 9080
           initialDelaySeconds: 30
           periodSeconds: 10
