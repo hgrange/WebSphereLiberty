@@ -44,14 +44,12 @@ spec:
             name: tmpfs-3
           - mountPath: /opt/ibm/wlp/usr/servers/defaultServer/apps/expanded
             name: tmpfs-4
-          - mountPath: /opt/ibm/wlp/usr/servers/defaultServer/configDropins/defaults
-            name: tmpfs-5
           - mountPath: /opt/ibm/wlp/output/defaultServer/logs
-            name: tmpfs-6
+            name: tmpfs-5
           - mountPath: /opt/ibm/wlp/output/defaultServer/resources
-            name: tmpfs-7
+            name: tmpfs-6
           - mountPath: /opt/ibm/wlp/output/defaultServer/workarea
-            name: tmpfs-8
+            name: tmpfs-7
         workingDir: /logs
         readinessProbe:
           httpGet:
@@ -76,6 +74,3 @@ spec:
       - name: tmpfs-6
         emptyDir: {}
       - name: tmpfs-7
-        emptyDir: {}
-      - name: tmpfs-8
-        emptyDir: {} 
