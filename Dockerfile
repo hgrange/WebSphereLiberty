@@ -11,10 +11,8 @@ COPY . /project
 WORKDIR /project
 
 #RUN mvn -X initialize process-resources verify => to get dependencies from maven
-RUN pwd && ls -la && echo $HOME && ls $HOME
-RUN sleep 99999
 
-RUN tar -xvzf m2.tgz -C /home/build
+RUN tar -xvzf m2.tgz -C /root
 RUN mvn clean package	
 #RUN mvn --version
 RUN mvn --version
