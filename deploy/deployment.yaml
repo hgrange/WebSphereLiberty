@@ -22,8 +22,8 @@ spec:
     spec:
       containers:
       - name: websphere
-    #    securityContext:
-    #      readOnlyRootFilesystem: true
+        securityContext:
+          readOnlyRootFilesystem: true
         image: IMAGE_REFERENCE
         imagePullPolicy: Always
         resources:
@@ -36,8 +36,8 @@ spec:
         ports:
         - containerPort: 9443
         volumeMounts:
-          - mountPath: /opt/ibm/wlp/output/defaultServer
-            name: tmpfs-1
+       #   - mountPath: /opt/ibm/wlp/output/defaultServer
+       #     name: tmpfs-1
        #   - mountPath: /opt/ibm/wlp/output/defaultServer/.classCache
        #     name: tmpfs-2
           - mountPath: /opt/ibm/wlp/usr/servers/defaultServer/workaera
