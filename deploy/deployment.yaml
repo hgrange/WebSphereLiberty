@@ -26,6 +26,9 @@ spec:
           readOnlyRootFilesystem: true
         image: IMAGE_REFERENCE
         imagePullPolicy: Always
+        env:
+          - name: WLP_OUTPUT_DIR
+            value: /out
         resources:
           limits:
             cpu: 200m
@@ -44,12 +47,8 @@ spec:
             name: tmpfs-3
           - mountPath: /opt/ibm/wlp/usr/servers/defaultServer/apps/expanded
             name: tmpfs-4
-          - mountPath: /opt/ibm/wlp/output/defaultServer/logs
+          - mountPath: /out
             name: tmpfs-5
-          - mountPath: /opt/ibm/wlp/output/defaultServer/resources
-            name: tmpfs-6
-          - mountPath: /opt/ibm/wlp/output/defaultServer/workarea
-            name: tmpfs-7
         workingDir: /logs
         readinessProbe:
           httpGet:
