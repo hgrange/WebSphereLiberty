@@ -30,7 +30,7 @@ FROM icr.io/appcafe/websphere-liberty:kernel-java8-ibmjava-ubi
 ARG TLS=true
 USER 0
 #RUN dnf install -y procps-ng && dnf clean all
-RUN dnf update -y && dnf install -y curl tar gzip jq  procps util-linux vim-minimal iputils 
+RUN dnf update -y && dnf install -y curl tar gzip jq  procps util-linux vim-minimal iputils net-tools
 USER 1001
 ENV JAVA_TOOL_OPTIONS="-Xshareclasses:noPersistentDiskSpaceCheck ${JAVA_TOOL_OPTIONS}" 
 
