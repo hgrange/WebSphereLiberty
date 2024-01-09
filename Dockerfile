@@ -28,7 +28,10 @@ RUN mkdir -p /config/apps && \
 FROM icr.io/appcafe/websphere-liberty:kernel-java8-ibmjava-ubi
 
 ARG TLS=true
-
+USER 0
+#RUN dnf install -y procps-ng && dnf clean all
+RUN microdnf update -y && microdnf install -y curl tar gzip jq  procps util-linux vim-minimal iputils &&
+USER 1001
 
 RUN mkdir -p /opt/ibm/wlp/usr/shared/config/lib/global
 COPY --chown=1001:0 --from=build-stage /config/ /config/
