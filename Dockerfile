@@ -43,5 +43,8 @@ RUN features.sh
 RUN configure.sh
 
 # Upgrade to production license 
+Run pwd
+Run ls
+Run ls /WebSphereLiberty
 RUN java -jar wlp-core-license.jar --acceptLicense /opt/ibm/wlp 
 
