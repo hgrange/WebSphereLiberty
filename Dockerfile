@@ -17,8 +17,10 @@ RUN mvn --version
 
 RUN mkdir -p /config/apps && \
     mkdir -p /sharedlibs && \
+    mkdir -p /licenses && \
     cp ./src/main/liberty/config/server.xml /config && \
     cp ./target/*.*ar /config/apps/ && \
+    cp ./wlp-core-license.jar /licenses && \
     if [ ! -z "$(ls ./src/main/liberty/lib)" ]; then \
         cp ./src/main/liberty/lib/* /sharedlibs; \
     fi
@@ -31,7 +33,7 @@ ARG TLS=true
 RUN mkdir -p /opt/ibm/wlp/usr/shared/config/lib/global
 COPY --chown=1001:0 --from=build-stage /config/ /config/
 COPY --chown=1001:0 --from=build-stage /sharedlibs/ /opt/ibm/wlp/usr/shared/config/lib/global
-
+COPY --chown=1001:0 --from=build-stage /licenses/wlp-core-license.jar /tmp
 # This script will add the requested XML snippets to enable Liberty features and grow image to be fit-for-purpose using featureUtility.
 # Only available in 'kernel-slim'. The 'full' tag already includes all features for convenience.
 
@@ -43,8 +45,7 @@ RUN features.sh
 RUN configure.sh
 
 # Upgrade to production license 
-Run pwd
-Run ls
-Run ls /WebSphereLiberty
-RUN java -jar wlp-core-license.jar --acceptLicense /opt/ibm/wlp 
+RUN ls /tmp
+RUN java -jar /tmp/wlp-core-license.jar --acceptLicense /opt/ibm/wlp 
+RUN rm /tmp/wlp-core-license.jar
 
