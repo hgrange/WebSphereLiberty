@@ -12,6 +12,7 @@ WORKDIR /project
 
 #RUN mvn -X initialize process-resources verify => to get dependencies from maven
 RUN mvn clean package	
+RUN sleep 99999
 #RUN mvn --version
 RUN mvn --version
 
