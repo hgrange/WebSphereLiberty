@@ -34,7 +34,6 @@ USER 0
 #RUN dnf install -y procps-ng && dnf clean all
 RUN dnf update -y && dnf install -y curl tar gzip jq  procps util-linux vim-minimal iputils net-tools
 USER 1001
-ENV IBM_JAVA_OPTIONS="-Xshareclasses:name=liberty,readonly,nonfatal,cacheDir=/home/default/.classCache/ -Dosgi.checkConfiguration=false -XX:+UseContainerSupport"
 
 RUN mkdir -p /opt/ibm/wlp/usr/shared/config/lib/global
 COPY --chown=1001:0 --from=build-stage /config/ /config/
@@ -49,9 +48,8 @@ RUN features.sh
 
 # This script will add the requested server configurations, apply any interim fixes and populate caches to optimize runtime
 ENV VERBOSE=true
-RUN configure.sh && mv  /output/.classCache /home/default/
+RUN configure.sh 
 
-Run echo apres : && echo /home/default/.classCache && ls -la /home/default/.classCache
 # Upgrade to production license 
 RUN java -jar /tmp/wlp-core-license.jar --acceptLicense /opt/ibm/wlp && rm /tmp/wlp-core-license.jar
 
