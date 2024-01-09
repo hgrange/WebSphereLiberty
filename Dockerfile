@@ -41,13 +41,13 @@ COPY --chown=1001:0 --from=build-stage /sharedlibs/ /opt/ibm/wlp/usr/shared/conf
 COPY --chown=1001:0 --from=build-stage /licenses/wlp-core-license.jar /tmp
 # This script will add the requested XML snippets to enable Liberty features and grow image to be fit-for-purpose using featureUtility.
 # Only available in 'kernel-slim'. The 'full' tag already includes all features for convenience.
-
+ENV VERBOSE=true
 RUN features.sh
 # Add interim fixes (optional)
 # COPY --chown=1001:0  interim-fixes /opt/ibm/wlp/fixes/
 
 # This script will add the requested server configurations, apply any interim fixes and populate caches to optimize runtime
-ENV VERBOSE=true
+
 RUN configure.sh 
 
 # Upgrade to production license 
