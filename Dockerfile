@@ -47,8 +47,8 @@ RUN features.sh
 
 # This script will add the requested server configurations, apply any interim fixes and populate caches to optimize runtime
 ENV VERBOSE=true
-RUN  mkdir /home/default/.classCache && configure.sh 
-Run echo apres : && echo /output/.classCache && ls -la /output/.classCache 
+RUN configure.sh && mv  /output/.classCache /home/default/
+
 Run echo apres : && echo /home/default/.classCache && ls -la /home/default/.classCache
 # Upgrade to production license 
 RUN java -jar /tmp/wlp-core-license.jar --acceptLicense /opt/ibm/wlp && rm /tmp/wlp-core-license.jar
