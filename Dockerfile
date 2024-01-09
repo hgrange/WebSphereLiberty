@@ -47,9 +47,8 @@ RUN features.sh
 # COPY --chown=1001:0  interim-fixes /opt/ibm/wlp/fixes/
 
 # This script will add the requested server configurations, apply any interim fixes and populate caches to optimize runtime
-Run echo avt : && echo /output/.classCache && ls -la /output/.classCache 
-Run echo avt : && echo /home/default/.classCache && ls -la /home/default/.classCache
-RUN  configure.sh && ls -la /output/.classCache
+
+RUN  mkdir /home/default/.classCache && configure.sh 
 Run echo apres : && echo /output/.classCache && ls -la /output/.classCache 
 Run echo apres : && echo /home/default/.classCache && ls -la /home/default/.classCache
 # Upgrade to production license 
