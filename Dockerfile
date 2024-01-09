@@ -49,7 +49,5 @@ RUN features.sh
 RUN configure.sh
 
 # Upgrade to production license 
-RUN ls /tmp
 RUN java -jar /tmp/wlp-core-license.jar --acceptLicense /opt/ibm/wlp && rm /tmp/wlp-core-license.jar
-RUN rm /tmp/wlp-core-license.jar
 
