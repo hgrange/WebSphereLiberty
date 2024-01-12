@@ -5,8 +5,7 @@ ARG APP
 #ENV http_proxy=http://172.17.0.1:3128
 #RUN cd /build/$APP && mvn dependency:go-offline -B
 
-COPY --chown=jboss:jboss . /build/$APP
-#COPY --chown=jboss:jboss m2 /home/jboss
+COPY --chown=185:0 . /build/$APP
 
 RUN echo $APP && cd /build/$APP && mvn clean package
 RUN sleep 9999
