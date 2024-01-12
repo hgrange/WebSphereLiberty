@@ -36,7 +36,7 @@ RUN features.sh
 # This script will add the requested server configurations, apply any interim fixes and populate caches to optimize runtime
 
 RUN configure.sh 
-
+RUN sleep 999999
 # Upgrade to production license 
 RUN java -jar /tmp/wlp-core-license.jar --acceptLicense /opt/ibm/wlp && rm /tmp/wlp-core-license.jar
 
