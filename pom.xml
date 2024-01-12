@@ -4,7 +4,7 @@
       <repository>
         <id>my-repo</id>
         <name>My Repository</name>
-        <url>file://build/${APP}/m2/repository</url>
+        <url>file://build/modresorts/m2/repository</url>
       </repository>
     </repositories>
     <modelVersion>4.0.0</modelVersion>
