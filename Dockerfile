@@ -1,24 +1,14 @@
+ARG APP=toto
 FROM registry.access.redhat.com/ubi8/openjdk-11:latest as builder
 WORKDIR /build
-# Download and cache dependencies beforehand
-COPY --chown=jboss:jboss pom.xml /build
-#ENV http_proxy=http://172.17.0.1:3128
-#RUN cd /build/modresorts && mvn dependency:go-offline -B
 
-COPY --chown=jboss:jboss . /build/modresorts
+#ENV http_proxy=http://172.17.0.1:3128
+#RUN cd /build/$APP && mvn dependency:go-offline -B
+
+COPY --chown=jboss:jboss . /build/$APP
 #COPY --chown=jboss:jboss m2 /home/jboss
 
-RUN cd /build/modresorts && mvn clean package
-
-RUN mkdir -p /config/apps && \
-    mkdir -p /sharedlibs && \
-    mkdir -p /licenses && \
-    cp ./src/main/liberty/config/server.xml /config && \
-    cp ./target/*.*ar /config/apps/ && \
-    cp ./wlp-core-license.jar /licenses && \
-    if [ ! -z "$(ls ./src/main/liberty/lib)" ]; then \
-        cp ./src/main/liberty/lib/* /sharedlibs; \
-    fi
+RUN cd /build/$APP && mvn clean package
 
 FROM icr.io/appcafe/websphere-liberty:kernel-java8-ibmjava-ubi
 
@@ -28,13 +18,18 @@ USER 0
 RUN dnf update -y && dnf install -y curl tar gzip jq  procps util-linux vim-minimal iputils net-tools
 USER 1001
 
+COPY --from=builder --chown=1001:0  /build/$APP/target/*.*ar /config/apps/
+COPY --from=builder --chown=1001:0  /build/$APP/src/main/liberty/config/ /config/
+COPY --from=builder --chown=1001:0  /build/$APP/src/wlp-core-license.jar /tmp
+RUN  echo 'SERVER_HOST=*' > /config/bootstrap.properties
+
 RUN mkdir -p /opt/ibm/wlp/usr/shared/config/lib/global
-COPY --chown=1001:0 --from=build-stage /config/ /config/
-COPY --chown=1001:0 --from=build-stage /sharedlibs/ /opt/ibm/wlp/usr/shared/config/lib/global
-COPY --chown=1001:0 --from=build-stage /licenses/wlp-core-license.jar /tmp
+
+COPY --chown=1001:0 --from=builder /build/$APP/src/main/liberty/lib/* /opt/ibm/wlp/usr/shared/config/lib/global
+
 # This script will add the requested XML snippets to enable Liberty features and grow image to be fit-for-purpose using featureUtility.
 # Only available in 'kernel-slim'. The 'full' tag already includes all features for convenience.
-ENV VERBOSE=true
+ENV VERBOSE=false
 
 RUN features.sh
 # Add interim fixes (optional)
