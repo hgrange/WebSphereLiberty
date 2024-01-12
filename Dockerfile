@@ -20,7 +20,7 @@ USER 1001
 
 COPY --from=builder --chown=1001:0  /build/$APP/target/*.*ar /config/apps/
 COPY --from=builder --chown=1001:0  /build/$APP/src/main/liberty/config/ /config/
-COPY --from=builder --chown=1001:0  /build/$APP/src/wlp-core-license.jar /tmp
+COPY --from=builder --chown=1001:0  /build/$APP/wlp-core-license.jar /tmp
 RUN  echo 'SERVER_HOST=*' > /config/bootstrap.properties
 
 RUN mkdir -p /opt/ibm/wlp/usr/shared/config/lib/global
