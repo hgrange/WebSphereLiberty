@@ -8,7 +8,7 @@ WORKDIR /build
 COPY --chown=jboss:jboss . /build/$APP
 #COPY --chown=jboss:jboss m2 /home/jboss
 
-RUN cd /build/$APP && mvn clean package
+RUN echo $APP && cd /build/$APP && mvn clean package
 
 FROM icr.io/appcafe/websphere-liberty:kernel-java8-ibmjava-ubi
 
