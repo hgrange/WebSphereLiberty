@@ -3,12 +3,12 @@ WORKDIR /build
 # Download and cache dependencies beforehand
 COPY --chown=jboss:jboss pom.xml /build
 #ENV http_proxy=http://172.17.0.1:3128
-#RUN cd /build && mvn dependency:go-offline -B
+#RUN cd /build/modresorts && mvn dependency:go-offline -B
 
-COPY --chown=jboss:jboss . /build
+COPY --chown=jboss:jboss . /build/modresorts
 #COPY --chown=jboss:jboss m2 /home/jboss
 
-RUN cd /build && mvn package
+RUN cd /build/modresorts && mvn clean package
 
 RUN mkdir -p /config/apps && \
     mkdir -p /sharedlibs && \
