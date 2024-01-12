@@ -1,6 +1,6 @@
 FROM registry.access.redhat.com/ubi8/openjdk-11:latest as builder
 WORKDIR /build
-ARG APP=toto
+ARG APP
 
 #ENV http_proxy=http://172.17.0.1:3128
 #RUN cd /build/$APP && mvn dependency:go-offline -B
@@ -11,11 +11,11 @@ COPY --chown=jboss:jboss . /build/$APP
 RUN echo $APP && cd /build/$APP && mvn clean package
 
 FROM icr.io/appcafe/websphere-liberty:kernel-java8-ibmjava-ubi
-ARG APP=toto
+ARG APP
 ARG TLS=true
-USER 0
+#USER 0
 #RUN dnf install -y procps-ng && dnf clean all
-RUN dnf update -y && dnf install -y curl tar gzip jq  procps util-linux vim-minimal iputils net-tools
+#RUN dnf update -y && dnf install -y curl tar gzip jq  procps util-linux vim-minimal iputils net-tools
 USER 1001
 
 COPY --from=builder --chown=1001:0  /build/$APP/target/*.*ar /config/apps/
