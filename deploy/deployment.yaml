@@ -70,6 +70,3 @@ spec:
         emptyDir: {}
       - name: tmpfs-5
         emptyDir: {}
-      - name: tmpfs-6
-        emptyDir: {}
-      - name: tmpfs-7
