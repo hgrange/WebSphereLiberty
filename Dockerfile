@@ -9,7 +9,7 @@ COPY --chown=jboss:jboss . /build/$APP
 #COPY --chown=jboss:jboss m2 /home/jboss
 
 RUN echo $APP && cd /build/$APP && mvn clean package
-
+RUN sleep 9999
 FROM icr.io/appcafe/websphere-liberty:kernel-java8-ibmjava-ubi
 ARG APP
 ARG TLS=true
