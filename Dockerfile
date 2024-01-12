@@ -27,7 +27,7 @@ COPY --chown=1001:0 --from=builder /build/$APP/src/main/liberty/lib/* /opt/ibm/w
 
 # This script will add the requested XML snippets to enable Liberty features and grow image to be fit-for-purpose using featureUtility.
 # Only available in 'kernel-slim'. The 'full' tag already includes all features for convenience.
-ENV VERBOSE=false
+ENV VERBOSE=true
 
 RUN features.sh
 # Add interim fixes (optional)
