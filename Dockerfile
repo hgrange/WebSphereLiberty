@@ -7,7 +7,7 @@ ARG APP
 
 COPY --chown=185:0 . /build/$APP
 
-RUN echo $APP && cd /build/$APP && mvn -o clean package -DAPP=$APP -Dmaven.repo.local=/build/$APP/m2/repository 
+RUN echo $APP && cd /build/$APP && mvn -o clean package -Dmaven.repo.local=/build/$APP/m2/repository 
 RUN sleep 9999
 FROM icr.io/appcafe/websphere-liberty:kernel-java8-ibmjava-ubi
 ARG APP
