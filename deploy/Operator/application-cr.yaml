@@ -10,12 +10,15 @@ spec:
     productEntitlementSource: IBM Cloud Pak for Applications
   probes:
     liveness:
+      httpGet:
+        host: 'localhost:9080'
+        path: /
       initialDelaySeconds: 30
       failureThreshold: 3
       successThreshold: 1
     readiness:
       httpGet:
-        host: localhost
+        host: 'localhost:9080'
         path: /
       initialDelaySeconds: 30
       failureThreshold: 3
