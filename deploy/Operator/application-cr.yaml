@@ -25,7 +25,7 @@ spec:
       successThreshold: 1
   securityContext:
     runAsNonRoot: true
-    readOnlyRootFilesystem: true
+    readOnlyRootFilesystem: false
   serviceAccount:
     mountToken: true
   autoscaling:
