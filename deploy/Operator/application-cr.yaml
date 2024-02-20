@@ -8,21 +8,15 @@ spec:
     accept: true
     edition: IBM WebSphere Application Server Liberty Core
     productEntitlementSource: IBM Cloud Pak for Applications
-  probes:
-    liveness:
-      httpGet:
-        host: 'localhost:9080'
-        path: /
-      initialDelaySeconds: 30
-      failureThreshold: 3
-      successThreshold: 1
-    readiness:
-      httpGet:
-        host: 'localhost:9080'
-        path: /
-      initialDelaySeconds: 30
-      failureThreshold: 3
-      successThreshold: 1
+  applicationVersion: v2
+  topologySpreadConstraints:
+    constraints:
+      - labelSelector:
+          matchLabels:
+            app.kubernetes.io/instance: zone
+        maxSkew: 1
+        topologyKey: kubernetes.io/hostname
+        whenUnsatisfiable: ScheduleAnyway
   securityContext:
     runAsNonRoot: true
     readOnlyRootFilesystem: false
@@ -32,7 +26,7 @@ spec:
     minReplicas: 1
     maxReplicas: 2
     targetCPUUtilizationPercentage: 60
-  applicationImage: 'icr.io/appcafe/open-liberty/samples/getting-started@sha256:d735c2ceae5945a0f20adcbcb04e55472d2520b6d1abb6d3049c8521234d3b7a'
+  applicationImage: IMAGE_REFERENCE
   expose: true
   manageTLS: true
   replicas: 1
