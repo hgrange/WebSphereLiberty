@@ -31,4 +31,4 @@ spec:
   manageTLS: true
   replicas: 1
   pullPolicy: Always
-  manageLTPA: true
+  manageLTPA: false
