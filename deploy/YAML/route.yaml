@@ -1,0 +1,19 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: modresorts
+  namespace: NAMESPACE
+  labels:
+    app: modresorts
+    app.kubernetes.io/instance: websphere
+    app.kubernetes.io/name: modresorts
+spec:
+  path: /
+  to:
+    kind: Service
+    name: modresorts
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Allow
+  port:
+    targetPort: http
