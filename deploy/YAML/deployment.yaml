@@ -1,0 +1,72 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: modresorts
+  namespace: NAMESPACE
+  labels:
+    app: modresorts
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: modresorts
+  template:
+    metadata:
+      labels:
+        app: modresorts
+      annotations:
+        productID: "87f3487c22f34742a799164f3f3ffa78"
+        productName: "IBM WebSphere Application Server Liberty Core"
+        productMetric: "PROCESSOR_VALUE_UNIT"
+        productChargedContainers: "All"
+    spec:
+      containers:
+      - name: websphere
+        securityContext:
+          readOnlyRootFilesystem: true
+        image: IMAGE_REFERENCE
+        imagePullPolicy: Always
+        env:
+          - name: WLP_OUTPUT_DIR
+            value: /out
+        resources:
+          limits:
+            cpu: 200m
+            memory: 512Mi
+          requests:
+            cpu: 200m
+            memory: 256Mi
+        ports:
+        - containerPort: 9443
+        volumeMounts:
+          - mountPath: /opt/ibm/wlp/usr/servers/defaultServer/workaera
+            name: tmpfs-1
+          - mountPath: /opt/ibm/wlp/usr/servers/defaultServer/configDropins/defaults
+            name: tmpfs-2
+          - mountPath: /logs
+            name: tmpfs-3
+          - mountPath: /opt/ibm/wlp/usr/servers/defaultServer/apps/expanded
+            name: tmpfs-4
+          - mountPath: /out
+            name: tmpfs-5
+        workingDir: /logs
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 9080
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 3
+          failureThreshold: 1
+      serviceAccount: ta-operator  
+      volumes:
+      - name: tmpfs-1
+        emptyDir: {}
+      - name: tmpfs-2
+        emptyDir: {}
+      - name: tmpfs-3
+        emptyDir: {}
+      - name: tmpfs-4
+        emptyDir: {}
+      - name: tmpfs-5
+        emptyDir: {}
