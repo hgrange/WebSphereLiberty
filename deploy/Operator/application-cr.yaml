@@ -1,0 +1,37 @@
+apiVersion: liberty.websphere.ibm.com/v1
+kind: WebSphereLibertyApplication
+metadata:
+  name: modresorts
+  namespace: liberty
+spec:
+  license:
+    accept: true
+    edition: IBM WebSphere Application Server Liberty Core
+    productEntitlementSource: IBM Cloud Pak for Applications
+  probes:
+    liveness:
+      initialDelaySeconds: 30
+      failureThreshold: 3
+      successThreshold: 1
+    readiness:
+      httpGet:
+        host: localhost
+        path: /
+      initialDelaySeconds: 30
+      failureThreshold: 3
+      successThreshold: 1
+  securityContext:
+    runAsNonRoot: true
+    readOnlyRootFilesystem: true
+  serviceAccount:
+    mountToken: true
+  autoscaling:
+    minReplicas: 1
+    maxReplicas: 2
+    targetCPUUtilizationPercentage: 60
+  applicationImage: 'icr.io/appcafe/open-liberty/samples/getting-started@sha256:d735c2ceae5945a0f20adcbcb04e55472d2520b6d1abb6d3049c8521234d3b7a'
+  expose: true
+  manageTLS: true
+  replicas: 1
+  pullPolicy: Always
+  manageLTPA: true
