@@ -28,7 +28,7 @@
       <AppenderRef ref="LOCALHOST" />
     </Logger>
     
-    <Root level="error">
+    <Root level="finest">
     </Root>    
 
   </Loggers>
